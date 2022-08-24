@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import com.pms.tdd.CarrinhoDeCompras;
 import com.pms.tdd.MockObservadorCarrinho;
+import com.pms.tdd.MockObservadorErro;
+import com.pms.tdd.ObservadorCarrinho;
 import com.pms.tdd.Produto;
 
 class TesteCarrinhoCompras {
@@ -48,8 +50,7 @@ class TesteCarrinhoCompras {
 	@Test
 	public void continuaNotificandoComErroEmObservador() {
 		MockObservadorCarrinho mock1 = new MockObservadorCarrinho();
-		MockObservadorCarrinho mock2 = new MockObservadorCarrinho();
-		mock2.retornandoErro();
+		ObservadorCarrinho mock2 = new MockObservadorErro();
 		MockObservadorCarrinho mock3 = new MockObservadorCarrinho();
 		c.adicionarObservador(mock1);
 		c.adicionarObservador(mock2);
