@@ -10,8 +10,13 @@ public class CarrinhoDeCompras {
 	
 	public void adicionaProduto(Produto p) {
 		itens.add(p);
-		for(ObservadorCarrinho observador : observadores)
-			observador.produtoAdicionado(p.getNome(), p.getValor());
+		for(ObservadorCarrinho observador : observadores) {
+			try {
+					observador.produtoAdicionado(p.getNome(), p.getValor());
+			} catch (Exception e) {
+				
+			}
+		}
 	}
 	
 	public int total() {
