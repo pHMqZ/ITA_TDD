@@ -9,35 +9,36 @@ import com.pms.tdd.exception.HardwareException;
 
 public class MockHardware implements Hardware {
 	
-	private Map<String, String> vinculoCartaoConta = new HashMap();
-	private boolean isCorrompido = false;
+	private boolean entregaDinheiro = false;
+	private boolean leituraEnvelope = false;
 	
-	
-	public MockHardware() {
-		vinculoCartaoConta.put("5230 0882 9140 4743", "57841");
-		vinculoCartaoConta.put("5120 5494 8850 9647", "23314");
+	public void erroEntregaDinheiro() {
+		entregaDinheiro = true;
 	}
 	
+	public void erroLeituraEnvelope() {
+		leituraEnvelope = true;
+	}
 	
 	@Override
-	public String pegarNumeroDaConta(String numeroCartao) throws HardwareException ,CartaoException{
-		if(isCorrompido)
-			throw new HardwareException("Erro de leitura");
-		if(vinculoCartaoConta.containsKey(numeroCartao))
-			return vinculoCartaoConta.get(numeroCartao);
-		throw new CartaoException("Cartão Inválido");
+	public String pegarNumeroDaConta(String conta) throws HardwareException ,CartaoException{
+		if(conta.equals("0"))
+			return "Erro no cartão, tente novamente";
+		if(conta.equals("x"))
+			return "Cartão invalido";
+		return conta;
 	}
 
 	@Override
 	public void entregarDinheiro() throws HardwareException {
-		if(isCorrompido)
-			throw new HardwareException("Não foi possível entregar o dinheiro");
+		if (entregaDinheiro)
+			throw new HardwareException("Problema na entrega do dinheiro");
 	}
 
 	@Override
 	public void lerEnvelope() throws HardwareException {
-		if(isCorrompido)
-			throw new HardwareException("Não foi possível pegar o envelope");
+		if (leituraEnvelope)
+			throw new HardwareException("Problema ao ler o envelope");
 	}
 
 }

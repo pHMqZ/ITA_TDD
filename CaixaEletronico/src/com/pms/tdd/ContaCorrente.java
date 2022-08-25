@@ -1,26 +1,17 @@
 package com.pms.tdd;
 
-import com.pms.tdd.exception.ContaException;
-
 public class ContaCorrente {
 	
-	private int conta;
+	private String conta;
 	private Double saldo = 0.0;
 	
-	public ContaCorrente(int conta) {
-		if(conta <=0)
-			throw new ContaException("Numero da conta inválido");
-		this.conta = conta;
-	}
 
-	public ContaCorrente(int conta, double saldo) {
-		if(conta <=0)
-			throw new ContaException("Numero da conta inválido");
+	public ContaCorrente(String conta, double saldo) {
 		this.conta = conta;
 		this.saldo= saldo;
 	}
 
-	public int getConta() {
+	public String getConta() {
 		return conta;
 	}
 
@@ -28,16 +19,16 @@ public class ContaCorrente {
 		return saldo;
 	}
 
-	public Double depositar(double valorDepositado) {
-			return saldo += valorDepositado;
-	}
-
+//	public void setSaldo(Double saldo) {
+//		this.saldo = saldo;
+//	}
+	
 	public Double sacar(double valorSacado) {
-		if(valorSacado > saldo)
-			throw new ContaException("Saldo insuficiente");
 		return saldo -= valorSacado;
 	}
 	
+	public Double deposito(double valorDepositado) {
+		return saldo += valorDepositado;
+	}
 	
-
 }
