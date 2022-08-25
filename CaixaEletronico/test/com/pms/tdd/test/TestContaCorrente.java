@@ -50,7 +50,7 @@ class TestContaCorrente {
 	
 	@Test
 	public void sacarValorDaContaMenorQueSaldo() {
-		cc = new ContaCorrente(2314, 400.0);
+		cc = new ContaCorrente(23314, 400.0);
 		cc.sacar(100.00);
 		assertEquals(300.0, cc.getSaldo());
 	}
@@ -65,6 +65,6 @@ class TestContaCorrente {
 	
 	@Test
 	public void logarUsuarioComSucesso() {
-		assertEquals("Usuário autenticado", ce.login("4567 3321 7658 4344", 57841));
+		assertEquals("Usuário autenticado", ce.logar("5230 0882 9140 4743", 57841));
 	}
 }
