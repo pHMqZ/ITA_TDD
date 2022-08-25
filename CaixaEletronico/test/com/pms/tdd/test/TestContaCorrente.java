@@ -6,16 +6,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.pms.tdd.CaixaEletronico;
 import com.pms.tdd.ContaCorrente;
 import com.pms.tdd.exception.ContaException;
 
 class TestContaCorrente {
 	
 	private ContaCorrente cc;
+	private CaixaEletronico ce;
 
 	@BeforeEach
 	public void criarNovaConta() {
 		cc = new ContaCorrente(57841);
+	}
+	
+	@BeforeEach
+	public void criarNovoCaixa(){
+		ce = new CaixaEletronico(new MockHardware(), new MockServicoRemoto());
 	}
 	
 	@Test
@@ -54,5 +61,10 @@ class TestContaCorrente {
 		assertThrows(ContaException.class, () ->{
 			cc.sacar(1000.0);
 		});
+	}
+	
+	@Test
+	public void logarUsuarioComSucesso() {
+		assertEquals("Usuário autenticado", ce.login("4567 3321 7658 4344", 57841));
 	}
 }

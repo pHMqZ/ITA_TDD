@@ -34,7 +34,7 @@ public class ContaCorrente {
 
 	public Double sacar(double valorSacado) {
 		if(valorSacado > saldo)
-			throw new ContaException("Valor solicitado é maior que seu saldo atual");
+			throw new ContaException("Saldo insuficiente");
 		return saldo -= valorSacado;
 	}
 	
