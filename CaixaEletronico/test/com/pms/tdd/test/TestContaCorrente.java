@@ -1,5 +1,6 @@
 package com.pms.tdd.test;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,27 @@ class TestContaCorrente {
 	public void NumeroContaInvalidoRetornaErro() {
 		assertThrows(ContaException.class, () ->{
 			new ContaCorrente(0);
+		});
+	}
+	
+	@Test
+	public void depositarValorDaConta() {
+		cc.depositar(400.00);
+		assertEquals(400.0, cc.getSaldo());
+	}
+	
+	@Test
+	public void sacarValorDaContaMenorQueSaldo() {
+		cc = new ContaCorrente(2314, 400.0);
+		cc.sacar(100.00);
+		assertEquals(300.0, cc.getSaldo());
+	}
+	
+	@Test
+	public void saqueSemSaldo() {
+		cc = new ContaCorrente(2314, 400.0);
+		assertThrows(ContaException.class, () ->{
+			cc.sacar(1000.0);
 		});
 	}
 }
