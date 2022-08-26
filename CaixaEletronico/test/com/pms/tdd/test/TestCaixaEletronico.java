@@ -33,4 +33,21 @@ class TestCaixaEletronico {
 		
 	}
 	
+	@Test
+	public void logarERealizarSaque() {
+		assertEquals("Usuário autenticado", ce.logar("23314"));
+		assertEquals("Retire o dinheiro", ce.sacar(100));
+	}
+	
+	@Test
+	public void realizarSaqueComErro() {
+		ce.logar("57841");
+		assertEquals("Saldo insuficiente", ce.sacar(100));
+	}
+	
+	@Test
+	public void visualizaSaldo() {
+		ce.logar("23314");
+		assertEquals("O saldo é R$ "+500.0,ce.saldo());
+	}
 }
