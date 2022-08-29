@@ -1,6 +1,6 @@
 package com.pms.tdd;
 
-public class Movie {
+public abstract class Movie {
 
 	public static final int CHILDRENS = 2;
 	
@@ -9,25 +9,29 @@ public class Movie {
 	public static final int NEW_RELEASE = 1;
 	
 	private String title;
+		
+	public static Movie createMovie(String title, int priceCode) {
+		if(priceCode == REGULAR)
+			return new Regular(title);
+		if(priceCode == NEW_RELEASE)
+			return new NewRelease(title);
+		if(priceCode == CHILDRENS)
+			return new Childrens(title);
+		throw new RuntimeException("Não existe esse tipo de filme");
+	}
 	
-	private int priceCode;
-	
-	public Movie(String title, int priceCode) {
+	public Movie(String title) {
 		this.title = title;
-		this.priceCode = priceCode;
 	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public int getPriceCode() {
-		return priceCode;
+	public int getFrequentRenterPoints(int daysRented) {
+		return 1;
 	}
 
-	public void setPriceCode(int arg) {
-		priceCode = arg;
-	}
-	
+	public abstract double getAmount(int daysRented);
 	
 }
