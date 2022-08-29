@@ -21,16 +21,12 @@ public class Movie {
 		return title;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public int getPriceCode() {
 		return priceCode;
 	}
 
-	public void setPriceCode(int priceCode) {
-		this.priceCode = priceCode;
+	public void setPriceCode(int arg) {
+		priceCode = arg;
 	}
 	
 	
